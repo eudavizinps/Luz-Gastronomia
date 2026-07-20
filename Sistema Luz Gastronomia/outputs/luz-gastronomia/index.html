@@ -10,12 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="overrides.css" />
+  <link rel="stylesheet" href="combo-overrides.css" />
 </head>
 <body>
   <div class="topbar"><span>Entrega em toda a cidade</span><span>•</span><span>Feito com amor, temperado com cuidado.</span></div>
   <header class="header">
     <a class="brand" href="#inicio" aria-label="Luz Gastronomia"><img src="assets/logo-topo-fundo-branco.png" alt="Luz Gastronomia" /></a>
-    <nav aria-label="Navegação principal"><a href="#cardapio">Cardápio</a><a href="#como-funciona">Como funciona</a><a href="#sobre">Nossa cozinha</a></nav>
+    <nav aria-label="Navegação principal"><a href="#cardapio">Cardápio</a><a href="#preparo">Modo de preparo</a><a href="#como-funciona">Como funciona</a><a href="#sobre">Nossa cozinha</a></nav>
     <div class="header-actions"><button class="icon-button" id="searchToggle" aria-label="Pesquisar">⌕</button><button class="cart-button" id="cartButton">Sacola <span id="cartCount">0</span></button></div>
   </header>
 
@@ -28,10 +29,49 @@
     <section class="benefits" id="como-funciona"><article><b>01</b><div><h3>Escolha seus pratos</h3><p>Monte seu pedido entre as opções do dia.</p></div></article><article><b>02</b><div><h3>Prepare o momento</h3><p>Receba suas escolhas prontas para aproveitar.</p></div></article><article><b>03</b><div><h3>Saboreie com calma</h3><p>Mais praticidade, sabor e carinho à mesa.</p></div></article></section>
 
     <section class="menu-section" id="cardapio">
-      <div class="section-heading"><div><p class="eyebrow">Nosso cardápio</p><h2>Escolhas para<br /><em>o seu dia.</em></h2></div><label class="search" id="searchBox"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar no cardápio" /></label></div>
-      <div class="categories" role="tablist"><button class="active" data-category="todos">Todos</button><button data-category="marmitas">Marmitas</button><button data-category="praticos">Pratos práticos</button><button data-category="kits">Kits da semana</button><button data-category="sobremesas">Doces</button></div>
+      <div class="section-heading"><div><p class="eyebrow">Nosso cardápio</p><h2>Escolha o sabor<br /><em>que combina com você.</em></h2></div><label class="search" id="searchBox"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar no cardápio" /></label></div>
+      <div class="menu-collection"><span class="collection-mark">✦</span><p>Explore todas as opções ou use os filtros para encontrar sua categoria favorita.</p></div>
+      <div class="categories menu-filters" role="tablist" aria-label="Filtros do cardápio"><button class="active" data-category="todos">Todas as opções</button><button data-category="carne">Carne bovina</button><button data-category="frango">Frango</button><button data-category="peixe">Peixes</button><button data-category="especial">Especiais</button><button data-category="cremes">Cremes</button></div>
       <div class="products" id="products"></div>
       <p class="empty" id="empty">Nenhum prato encontrado. Experimente outra busca.</p>
+    </section>
+
+    <section class="combo-builder" id="combo" aria-labelledby="combo-titulo">
+      <div class="combo-intro"><p class="eyebrow">Monte do seu jeito</p><h2 id="combo-titulo">Seu combo,<br /><em>suas escolhas.</em></h2><p>Escolha suas refeições favoritas e deixe a praticidade cuidar do seu dia.</p></div>
+      <div class="combo-shell">
+        <div class="combo-tabs" role="tablist"><button class="combo-tab active" data-combo="mix"><span>Combo especial</span><strong>8 marmitas + 2 cremes</strong><em>R$ 199,90</em></button><button class="combo-tab" data-combo="cremes"><span>Para os amantes de creme</span><strong>10 cremes</strong><em>A partir de R$ 189,90</em></button></div>
+        <div class="combo-status"><div><span id="comboCount">0 de 10 escolhas</span><strong id="comboInstruction">Escolha 8 marmitas e 2 cremes</strong></div><span class="combo-price" id="comboPrice">R$ 199,90</span></div>
+        <div class="combo-options" id="comboOptions"></div>
+        <div class="combo-footer"><p id="comboHint">Selecione suas opções para montar o combo.</p><div class="combo-actions"><button class="combo-reset" id="resetCombo" type="button">Recomeçar</button><button class="button button-gold" id="addCombo" disabled>Adicionar combo <span>→</span></button></div></div>
+      </div>
+    </section>
+
+    <section class="preparation" id="preparo" aria-labelledby="preparo-titulo">
+      <div class="preparation-intro">
+        <p class="eyebrow">Do freezer para a mesa</p>
+        <h2 id="preparo-titulo">Seu prato, no ponto<br /><em>do cuidado.</em></h2>
+        <p>Para garantir o melhor sabor, textura e qualidade das nossas refeições, escolha o método que combina com a sua rotina.</p>
+        <div class="prep-legend"><span><i></i> Tempo estimado</span><span><i></i> Não recongele</span></div>
+      </div>
+      <div class="prep-methods">
+        <article class="prep-card featured">
+          <div class="prep-card-head"><span class="prep-icon">❄</span><div><p>Opção 1</p><h3>Geladeira <small>(recomendado)</small></h3></div><strong>12h</strong></div>
+          <ol><li>Retire a marmita do freezer.</li><li>Deixe descongelando na geladeira por aproximadamente 12 horas.</li><li>Após esse período, aqueça normalmente.</li></ol>
+          <span class="prep-status">Melhor opção para preservar textura e sabor</span>
+        </article>
+        <article class="prep-card">
+          <div class="prep-card-head"><span class="prep-icon">◌</span><div><p>Opção 2</p><h3>Micro-ondas</h3></div><strong>2–4<br /><small>min</small></strong></div>
+          <ol><li>Retire a tampa da embalagem, ou deixe-a parcialmente aberta.</li><li>Aqueça por 2 a 4 minutos.</li><li>Ajuste o tempo conforme a potência do aparelho e a quantidade de alimento.</li></ol>
+        </article>
+        <article class="prep-card">
+          <div class="prep-card-head"><span class="prep-icon">♨</span><div><p>Opção 3</p><h3>Banho-maria</h3></div><strong>Até<br /><small>aquecer</small></strong></div>
+          <ol><li>Se preferir, retire a refeição da embalagem.</li><li>Aqueça em banho-maria até ficar completamente aquecida.</li><li>Não coloque diretamente sobre o fogo.</li></ol>
+        </article>
+      </div>
+      <div class="prep-bottom">
+        <div class="prep-care"><h3>Cuidados importantes</h3><ul><li>Mantenha as marmitas sempre congeladas até o momento do consumo.</li><li>Após descongelar, conserve sob refrigeração e consuma em até 24 horas.</li><li>Não recongele uma refeição que já foi descongelada.</li><li>Certifique-se de que o alimento esteja completamente aquecido antes de consumir.</li></ul></div>
+        <aside class="prep-tip"><span>✦</span><div><h3>Dica da Luz Gastronomia</h3><p>Para preservar ainda mais o sabor e a textura dos alimentos, recomendamos realizar o descongelamento na geladeira sempre que possível. É a forma mais segura e garante uma refeição ainda mais saborosa.</p></div></aside>
+      </div>
     </section>
 
     <section class="story" id="sobre"><div class="story-photo"><img src="assets/chef.png" alt="Chef da Luz Gastronomia preparando uma refeição" /></div><div class="story-content"><p class="eyebrow">Da nossa cozinha</p><h2>Comida boa é<br />um gesto de <em>cuidado.</em></h2><p>Na Luz, cada receita nasce de ingredientes honestos e de uma vontade simples: deixar a sua rotina mais leve, gostosa e cheia de afeto.</p><a class="text-link" href="#cardapio">Conheça nossas escolhas <span>→</span></a></div></section>
