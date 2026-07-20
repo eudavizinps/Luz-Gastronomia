@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Luz Gastronomia — comida afetiva, pronta para iluminar sua rotina." />
+  <title>Luz Gastronomia | Cardápio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="overrides.css" />
+</head>
+<body>
+  <div class="topbar"><span>Entrega em toda a cidade</span><span>•</span><span>Feito com amor, temperado com cuidado.</span></div>
+  <header class="header">
+    <a class="brand" href="#inicio" aria-label="Luz Gastronomia"><img src="assets/logo-topo-fundo-branco.png" alt="Luz Gastronomia" /></a>
+    <nav aria-label="Navegação principal"><a href="#cardapio">Cardápio</a><a href="#como-funciona">Como funciona</a><a href="#sobre">Nossa cozinha</a></nav>
+    <div class="header-actions"><button class="icon-button" id="searchToggle" aria-label="Pesquisar">⌕</button><button class="cart-button" id="cartButton">Sacola <span id="cartCount">0</span></button></div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow">Gastronomia que acolhe</p><h1>Sabor que ilumina<br /><em>todos os dias.</em></h1><p class="lead">Pratos preparados com afeto, ingredientes selecionados e o cuidado de uma cozinha que entende sua rotina.</p><a class="button button-gold" href="#cardapio">Ver cardápio <span>→</span></a></div>
+      <div class="hero-image"><img src="assets/marmitas.png" alt="Marmitas Luz Gastronomia" /><div class="hero-stamp"><span>feito<br />com</span><strong>amor</strong></div></div>
+    </section>
+
+    <section class="benefits" id="como-funciona"><article><b>01</b><div><h3>Escolha seus pratos</h3><p>Monte seu pedido entre as opções do dia.</p></div></article><article><b>02</b><div><h3>Prepare o momento</h3><p>Receba suas escolhas prontas para aproveitar.</p></div></article><article><b>03</b><div><h3>Saboreie com calma</h3><p>Mais praticidade, sabor e carinho à mesa.</p></div></article></section>
+
+    <section class="menu-section" id="cardapio">
+      <div class="section-heading"><div><p class="eyebrow">Nosso cardápio</p><h2>Escolhas para<br /><em>o seu dia.</em></h2></div><label class="search" id="searchBox"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar no cardápio" /></label></div>
+      <div class="categories" role="tablist"><button class="active" data-category="todos">Todos</button><button data-category="marmitas">Marmitas</button><button data-category="praticos">Pratos práticos</button><button data-category="kits">Kits da semana</button><button data-category="sobremesas">Doces</button></div>
+      <div class="products" id="products"></div>
+      <p class="empty" id="empty">Nenhum prato encontrado. Experimente outra busca.</p>
+    </section>
+
+    <section class="story" id="sobre"><div class="story-photo"><img src="assets/chef.png" alt="Chef da Luz Gastronomia preparando uma refeição" /></div><div class="story-content"><p class="eyebrow">Da nossa cozinha</p><h2>Comida boa é<br />um gesto de <em>cuidado.</em></h2><p>Na Luz, cada receita nasce de ingredientes honestos e de uma vontade simples: deixar a sua rotina mais leve, gostosa e cheia de afeto.</p><a class="text-link" href="#cardapio">Conheça nossas escolhas <span>→</span></a></div></section>
+    <section class="apron"><div><p class="eyebrow">Detalhes que encantam</p><h2>Para servir<br />com <em>identidade.</em></h2><p>Uma experiência pensada do preparo à sua mesa.</p></div><img src="assets/avental.png" alt="Aventais Luz Gastronomia" /></section>
+  </main>
+
+  <footer><div class="footer-brand"><img src="assets/logo.png" alt="Luz Gastronomia" /><p>Comida que acolhe,<br />carinho que fica.</p></div><div><h4>Atendimento</h4><a href="tel:+550000000000">(00) 00000-0000</a><a href="mailto:ola@luzgastronomia.com.br">ola@luzgastronomia.com.br</a></div><div><h4>Horários</h4><p>Segunda a sexta<br />das 9h às 18h</p></div><div><h4>Siga a Luz</h4><a href="#">Instagram</a><a href="#">WhatsApp</a></div><small>© 2026 Luz Gastronomia. Todos os direitos reservados.</small></footer>
+  <aside class="cart" id="cart" aria-label="Sacola de pedidos"><div class="cart-head"><h2>Sua sacola</h2><button id="closeCart" aria-label="Fechar sacola">×</button></div><div id="cartItems" class="cart-items"><p class="cart-empty">Sua sacola está vazia.</p></div><div class="cart-total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div><button class="button button-gold checkout">Finalizar pedido →</button></aside><div class="overlay" id="overlay"></div>
+  <script src="script.js"></script>
+</body>
+</html>
