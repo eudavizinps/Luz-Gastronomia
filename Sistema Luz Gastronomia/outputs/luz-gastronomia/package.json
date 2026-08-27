@@ -1,8 +1,5 @@
 {
   "name": "luz-gastronomia",
   "private": true,
-  "type": "module",
-  "dependencies": {
-    "@netlify/blobs": "^11.0.1"
-  }
+  "type": "module"
 }
