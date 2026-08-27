@@ -5,5 +5,5 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "DISCOUNTS_DB"
 database_name = "luz-gastronomia-discounts"
-database_id = "REPLACE_WITH_CLOUDFLARE_D1_DATABASE_ID"
+database_id = "651228d0-85f0-416d-9e68-586d6a73cec0"
 migrations_dir = "migrations"
