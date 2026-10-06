@@ -20,10 +20,15 @@ const dishes = [
   { name: 'Peixe Assado', category: 'Peixes', filter: 'peixe', description: 'Filé de peixe sazonal, arroz integral e mix de legumes.', price: 24.90, image: 'menu/fish-assado.jpg' },
   { name: 'Peixe Grelhado', category: 'Peixes', filter: 'peixe', description: 'Filé de peixe sazonal, arroz de brócolis e mix de legumes.', price: 23.90, image: 'menu/fish-grelhado.jpg' },
   { name: 'Churrasquinho', category: 'Especial', filter: 'especial', description: 'Filé de frango, alcatra e linguiça grelhados, acompanhados de arroz branco, feijão e farofa de alho com tomilho.', price: 24.90, image: 'menu/special-churrasquinho.jpg' },
-  { name: 'Creme de Moranga', category: 'Cremes', filter: 'cremes', description: 'Camarão, abóbora, creme de leite, molho artesanal e azeite.', price: 24.90, image: 'menu/cream-moranga-real.jpeg' },
-  { name: 'Creme Verde', category: 'Cremes', filter: 'cremes', description: 'Mix de legumes verdes, frango desfiado e base de couve-flor.', price: 21.90, image: 'menu/cream-verde-real.jpeg' },
-  { name: 'Creme da Alice (Vegano)', category: 'Cremes', filter: 'cremes', description: 'Abóbora com mix de cogumelos.', price: 22.90, image: 'menu/cream-alice-vegan.JPG' },
-  { name: 'Creme da Roça', category: 'Cremes', filter: 'cremes', description: 'Milho, frango e queijo.', price: 21.90, image: 'menu/cream-roca-real.jpeg' }
+  { name: 'Creme de Abóbora com Gorgonzola', category: 'Cremes', filter: 'cremes', description: 'Creme de abóbora com queijo gorgonzola.', price: 24.90, image: '' },
+  { name: 'Creme de Abóbora com Camarão', category: 'Cremes', filter: 'cremes', description: 'Creme de abóbora com camarão.', price: 24.90, image: 'menu/cream-moranga-real.jpeg' },
+  { name: 'Creme de Ervilha', category: 'Cremes', filter: 'cremes', description: 'Ervilha com carne bovina, calabresa e bacon.', price: 24.90, image: '' },
+  { name: 'Creme de Milho', category: 'Cremes', filter: 'cremes', description: 'Milho, frango e queijo.', price: 24.90, image: 'menu/cream-roca-real.jpeg' },
+  { name: 'Creme de Abóbora com Cogumelos', category: 'Cremes', filter: 'cremes', description: 'Abóbora com mix de cogumelos.', price: 24.90, image: 'menu/cream-alice-vegan.JPG' },
+  { name: 'Canjiquinha com Costelinha', category: 'Cremes', filter: 'cremes', description: 'Canjiquinha com costelinha suína.', price: 24.90, image: '' },
+  { name: 'Creme de Mandioquinha', category: 'Cremes', filter: 'cremes', description: 'Mandioquinha com carne seca.', price: 24.90, image: '' },
+  { name: 'Canja de Galinha', category: 'Cremes', filter: 'cremes', description: 'Canja tradicional de galinha.', price: 24.90, image: '' },
+  { name: 'Creme de Aipim com Costela', category: 'Cremes', filter: 'cremes', description: 'Creme de aipim com costela desfiada.', price: 24.90, image: '' }
 ];
 const DELIVERY_FEE = 10, WHATSAPP_BUSINESS_NUMBER = '5521977161757';
 let query = '', activeCategory = 'todos', cart = [], discountState = { cpf: '', rate: 0, label: '' }, discountOrderId = null;
