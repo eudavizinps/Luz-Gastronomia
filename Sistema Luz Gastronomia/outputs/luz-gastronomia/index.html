@@ -54,10 +54,22 @@
     <section class="combo-builder" id="combo" aria-labelledby="combo-titulo">
       <div class="combo-intro"><p class="eyebrow">Monte do seu jeito</p><h2 id="combo-titulo">Seu combo,<br /><em>suas escolhas.</em></h2><p>Escolha suas refeições favoritas e deixe a praticidade cuidar do seu dia.</p><aside class="custom-kit-cta"><span>✦ Kit sob medida</span><strong>Monte o seu kit personalizado de acordo com sua dieta.</strong><p>Conte para a Luz suas preferências e objetivos; montamos uma seleção pensada para a sua rotina.</p><p class="thermal-bag-note">👜 Na compra de qualquer kit ou de mais de 10 marmitas, sua encomenda será entregue na bolsa térmica personalizada da Luz Gastronomia.</p><a href="https://wa.me/5521977161757?text=Olá%2C%20quero%20montar%20um%20kit%20personalizado%20de%20acordo%20com%20minha%20dieta." target="_blank" rel="noopener noreferrer">Conversar pelo WhatsApp <b>→</b></a></aside></div>
       <div class="combo-shell">
-        <div class="combo-tabs" role="tablist"><button class="combo-tab active" data-combo="mix"><span>Combo especial</span><strong>8 marmitas 400g + 2 cremes 300g</strong><em>R$ 149,90</em></button><button class="combo-tab" data-combo="marmitas"><span>Para montar do seu jeito</span><strong>10 marmitas de 400g</strong><em>R$ 169,90</em></button><button class="combo-tab" data-combo="cremes"><span>Para os amantes de creme</span><strong>10 cremes de 300g</strong><em>R$ 129,90</em></button></div>
-        <div class="combo-status"><div><span id="comboCount">0 de 10 escolhas</span><strong id="comboInstruction">Escolha 8 marmitas de 400g e 2 cremes de 300g</strong></div><span class="combo-price" id="comboPrice">R$ 149,90</span></div>
-        <div class="combo-options" id="comboOptions"></div>
-        <div class="combo-footer"><p id="comboHint">Selecione suas opções para montar o combo.</p><div class="combo-actions"><button class="combo-reset" id="resetCombo" type="button">Recomeçar</button><button class="button button-gold" id="addCombo" disabled>Adicionar combo <span>→</span></button></div></div>
+        <div class="combo-tabs" role="tablist" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); border-bottom: none; gap: 4px; background: #e7e0d5; padding: 4px;">
+          <button class="combo-tab" data-combo="10m"><span>KITS</span><strong>10 Marmitas</strong><em>R$ 149,90</em></button>
+          <button class="combo-tab" data-combo="15m"><span>KITS</span><strong>15 Marmitas</strong><em>R$ 194,90</em></button>
+          <button class="combo-tab" data-combo="20m"><span>KITS</span><strong>20 Marmitas</strong><em>R$ 249,90</em></button>
+          <button class="combo-tab" data-combo="10c"><span>KITS</span><strong>10 Cremes</strong><em>R$ 129,90</em></button>
+          <button class="combo-tab" data-combo="20c"><span>KITS</span><strong>20 Cremes</strong><em>R$ 239,90</em></button>
+          <button class="combo-tab" data-combo="5m5c"><span>KITS</span><strong>5 Marm. + 5 Cremes</strong><em>R$ 139,90</em></button>
+          <button class="combo-tab" data-combo="10m5c"><span>KITS</span><strong>10 Marm. + 5 Cremes</strong><em>R$ 189,90</em></button>
+          <button class="combo-tab" data-combo="10m10c"><span>KITS</span><strong>10 Marm. + 10 Cremes</strong><em>R$ 259,90</em></button>
+          <button class="combo-tab" data-combo="20m20c"><span>KITS</span><strong>20 Marm. + 20 Cremes</strong><em>R$ 359,90</em></button>
+        </div>
+        <div id="comboSelectionArea" style="display: none; border-top: 4px solid var(--gold);">
+          <div class="combo-status"><div><span id="comboCount">0 escolhas</span><strong id="comboInstruction">Escolha suas marmitas e cremes</strong></div><span class="combo-price" id="comboPrice"></span></div>
+          <div class="combo-options" id="comboOptions"></div>
+          <div class="combo-footer"><p id="comboHint">Selecione suas opções para montar o combo.</p><div class="combo-actions"><button class="combo-reset" id="resetCombo" type="button">Recomeçar</button><button class="button button-gold" id="addCombo" disabled>Adicionar combo <span>→</span></button></div></div>
+        </div>
       </div>
     </section>
 
