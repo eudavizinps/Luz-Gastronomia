@@ -44,13 +44,60 @@ document.querySelector('#cartItems').addEventListener('click', event => { const 
 document.querySelector('#cartButton').onclick = () => toggleCart(true); document.querySelector('#closeCart').onclick = () => toggleCart(false); document.querySelector('#overlay').onclick = () => toggleCart(false); document.querySelector('#continueShopping').onclick = () => { toggleCart(false); document.querySelector('#cardapio').scrollIntoView({ behavior: 'smooth', block: 'start' }); }; document.querySelector('#searchInput').addEventListener('input', event => { query = event.target.value.toLowerCase().trim(); renderProducts(); }); document.querySelector('#searchToggle').onclick = () => { document.querySelector('#searchBox').scrollIntoView({ behavior: 'smooth', block: 'center' }); document.querySelector('#searchInput').focus(); }; renderProducts(); renderCart();
 
 const comboChoices = dishes.map(dish => ({ name: dish.name, kind: dish.filter === 'cremes' ? 'creme' : 'marmita' }));
-let comboType = 'mix', comboSelection = [];
+const comboSelectionArea = document.querySelector('#comboSelectionArea');
+let comboType = null, comboSelection = [];
 const comboOptions = document.querySelector('#comboOptions'), comboCount = document.querySelector('#comboCount'), comboInstruction = document.querySelector('#comboInstruction'), comboPrice = document.querySelector('#comboPrice'), comboHint = document.querySelector('#comboHint'), addCombo = document.querySelector('#addCombo');
-function comboRules() { if (comboType === 'mix') return { marmita: 8, creme: 2, price: 149.90, label: '8 marmitas de 400g e 2 cremes de 300g' }; if (comboType === 'marmitas') return { marmita: 10, creme: 0, price: 169.90, label: '10 marmitas de 400g' }; return { marmita: 0, creme: 10, price: 129.90, label: '10 cremes de 300g' }; }
-function renderCombo() { const rules = comboRules(), visible = comboType === 'mix' ? comboChoices : comboChoices.filter(choice => choice.kind === (comboType === 'marmitas' ? 'marmita' : 'creme')), marmitas = comboSelection.filter(choice => choice.kind === 'marmita').length, cremes = comboSelection.filter(choice => choice.kind === 'creme').length, complete = marmitas === rules.marmita && cremes === rules.creme; comboOptions.innerHTML = visible.map(choice => { const count = comboSelection.filter(item => item === choice).length, sameKind = choice.kind === 'marmita' ? marmitas : cremes, max = rules[choice.kind], index = comboChoices.indexOf(choice); return `<div class="combo-option ${count ? 'selected' : ''}"><span><small>${choice.kind === 'marmita' ? 'marmita · 400g' : 'creme · 300g'}</small><strong>${choice.name}</strong></span><div class="combo-quantity"><button type="button" data-action="decrease" data-choice="${index}" aria-label="Diminuir ${choice.name}" ${count === 0 ? 'disabled' : ''}>−</button><b>${count}</b><button type="button" data-action="increase" data-choice="${index}" aria-label="Aumentar ${choice.name}" ${sameKind >= max ? 'disabled' : ''}>+</button></div></div>`; }).join(''); comboCount.textContent = rules.marmita && rules.creme ? `${marmitas} de 8 marmitas · ${cremes} de 2 cremes` : rules.marmita ? `${marmitas} de 10 marmitas` : `${cremes} de 10 cremes`; comboInstruction.textContent = `Escolha ${rules.label}`; comboPrice.textContent = money(rules.price); comboHint.textContent = complete ? 'Tudo certo! Seu combo está pronto para ir à sacola.' : `Faltam ${Math.max(0, rules.marmita - marmitas) + Math.max(0, rules.creme - cremes)} escolhas para completar.`; addCombo.disabled = !complete; }
-document.querySelectorAll('.combo-tab').forEach(tab => tab.addEventListener('click', () => { comboType = tab.dataset.combo; comboSelection = []; document.querySelectorAll('.combo-tab').forEach(button => button.classList.toggle('active', button === tab)); renderCombo(); }));
+
+const combosList = {
+  '10m': { marmita: 10, creme: 0, price: 149.90, label: '10 Marmitas' },
+  '15m': { marmita: 15, creme: 0, price: 194.90, label: '15 Marmitas' },
+  '20m': { marmita: 20, creme: 0, price: 249.90, label: '20 Marmitas' },
+  '10c': { marmita: 0, creme: 10, price: 129.90, label: '10 Cremes' },
+  '20c': { marmita: 0, creme: 20, price: 239.90, label: '20 Cremes' },
+  '5m5c': { marmita: 5, creme: 5, price: 139.90, label: '5 Marmitas + 5 Cremes' },
+  '10m5c': { marmita: 10, creme: 5, price: 189.90, label: '10 Marmitas + 5 Cremes' },
+  '10m10c': { marmita: 10, creme: 10, price: 259.90, label: '10 Marmitas + 10 Cremes' },
+  '20m20c': { marmita: 20, creme: 20, price: 359.90, label: '20 Marmitas + 20 Cremes' }
+};
+
+function comboRules() { return comboType ? combosList[comboType] : null; }
+
+function renderCombo() {
+  const rules = comboRules();
+  if (!rules) {
+    if (comboSelectionArea) comboSelectionArea.style.display = 'none';
+    return;
+  }
+  if (comboSelectionArea) comboSelectionArea.style.display = 'block';
+
+  const visible = comboChoices.filter(choice => {
+    if (rules.marmita > 0 && rules.creme > 0) return true;
+    if (rules.marmita > 0) return choice.kind === 'marmita';
+    return choice.kind === 'creme';
+  });
+
+  const marmitas = comboSelection.filter(choice => choice.kind === 'marmita').length;
+  const cremes = comboSelection.filter(choice => choice.kind === 'creme').length;
+  const complete = marmitas === rules.marmita && cremes === rules.creme;
+
+  comboOptions.innerHTML = visible.map(choice => {
+    const count = comboSelection.filter(item => item === choice).length;
+    const sameKind = choice.kind === 'marmita' ? marmitas : cremes;
+    const max = rules[choice.kind];
+    const index = comboChoices.indexOf(choice);
+    return `<div class="combo-option ${count ? 'selected' : ''}"><span><small>${choice.kind === 'marmita' ? 'marmita · 400g' : 'creme · 300g'}</small><strong>${choice.name}</strong></span><div class="combo-quantity"><button type="button" data-action="decrease" data-choice="${index}" aria-label="Diminuir ${choice.name}" ${count === 0 ? 'disabled' : ''}>−</button><b>${count}</b><button type="button" data-action="increase" data-choice="${index}" aria-label="Aumentar ${choice.name}" ${sameKind >= max ? 'disabled' : ''}>+</button></div></div>`;
+  }).join('');
+
+  comboCount.textContent = rules.marmita && rules.creme ? `${marmitas} de ${rules.marmita} marmitas · ${cremes} de ${rules.creme} cremes` : rules.marmita ? `${marmitas} de ${rules.marmita} marmitas` : `${cremes} de ${rules.creme} cremes`;
+  comboInstruction.textContent = `Escolha ${rules.label}`;
+  comboPrice.textContent = money(rules.price);
+  comboHint.textContent = complete ? 'Tudo certo! Seu combo está pronto para ir à sacola.' : `Faltam ${Math.max(0, rules.marmita - marmitas) + Math.max(0, rules.creme - cremes)} escolhas para completar.`;
+  addCombo.disabled = !complete;
+}
+
+document.querySelectorAll('.combo-tab').forEach(tab => tab.addEventListener('click', () => { comboType = tab.dataset.combo; comboSelection = []; document.querySelectorAll('.combo-tab').forEach(button => button.classList.toggle('active', button === tab)); renderCombo(); setTimeout(() => { if (comboSelectionArea) { const y = comboSelectionArea.getBoundingClientRect().top + window.scrollY - 100; window.scrollTo({top: y, behavior: 'smooth'}); } }, 50); }));
 comboOptions.addEventListener('click', event => { const button = event.target.closest('[data-action]'); if (!button) return; const choice = comboChoices[Number(button.dataset.choice)], rules = comboRules(); if (button.dataset.action === 'increase') { const sameKind = comboSelection.filter(item => item.kind === choice.kind).length; if (sameKind < rules[choice.kind]) comboSelection.push(choice); } else { const index = comboSelection.lastIndexOf(choice); if (index !== -1) comboSelection.splice(index, 1); } renderCombo(); });
-document.querySelector('#resetCombo').addEventListener('click', () => { comboSelection = []; renderCombo(); }); addCombo.addEventListener('click', () => { const rules = comboRules(); cart.push({ name: `Combo personalizado: ${rules.label}`, price: rules.price }); resetDiscountReservation(); renderCart(); toggleCart(true); }); renderCombo();
+document.querySelector('#resetCombo').addEventListener('click', () => { comboSelection = []; renderCombo(); }); addCombo.addEventListener('click', () => { const rules = comboRules(); cart.push({ name: `Combo: ${rules.label}`, price: rules.price }); resetDiscountReservation(); renderCart(); toggleCart(true); }); renderCombo();
 
 const accountStorageKey = 'luz-gastronomia-customer';
 const accountModal = document.querySelector('#accountModal');
